@@ -5,6 +5,10 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
+// window config
+const unsigned int WIND_WIDTH = 800;
+const unsigned int WIND_HEIGHT = 600;
+
 int main()
 {
 
@@ -16,8 +20,8 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	GLFWwindow* window = glfwCreateWindow(
-		800, 600, // Window Size (width x height)
-		"Hello Mum !", // Window Title
+		WIND_WIDTH, WIND_HEIGHT, // Window Size (width x height)
+		"Hello Mum & Dad!", // Window Title
 		NULL,
 		NULL
 	);
@@ -42,16 +46,18 @@ int main()
 
 	while (!glfwWindowShouldClose(window))
 	{
+
+		// input
 		processInput(window);
 
+		glClearColor(0.5f, 0.0f, 1.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// check and call events 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-	}
 
-	glViewport(
-		0, 0, // Set the location of the lowest left pixel (or somethin)
-		800, 600 // Sets the size of the viewport
-	);
+	}
 
 	glfwTerminate();
 	return 0;
